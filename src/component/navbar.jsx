@@ -37,11 +37,7 @@ function Navbar() {
           </div>
 
           {/* Right Action Button */}
-          <div className="hidden lg:flex flex-1 justify-end">
-            <button className="bg-white text-black hover:bg-cyan-400 hover:text-black rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide transition-all active:scale-95">
-              Premium v1
-            </button>
-          </div>
+    
           
           {/* Toggle Button Hamburger for Mobile Screen */}
           <div className="lg:hidden flex items-center">
