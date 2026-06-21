@@ -1,7 +1,7 @@
 import '../index.css';
 import { useState } from 'react';
 
-function Navbar({ children }) {
+function Navbar() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -9,47 +9,83 @@ function Navbar({ children }) {
   };
 
   return (
-    <>
-      <div className="navbar bg-neutral text-neutral-content">
-        <div className="flex-2">
-          <a className="h1 ps-6">Tik-Down</a>
-        </div>
-        
-        {/* Toggle Button for Mobile */}
-        <div className="lg:hidden flex-none">
-          <button
-            onClick={toggleMenu}
-            className="px-2 py-1 text-neutral-content hover:text-neutral-focus"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          </button>
-        </div>
+    <nav className="sticky top-0 z-50 w-full border-b border-gray-900 bg-[#0c0414]/70 backdrop-blur-md transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo Brand - Menggunakan warna solid putih dengan hover cyan */}
+          <div className="flex-1 flex items-center justify-start">
+            <a href="#" className="text-xl font-bold tracking-wider text-white hover:text-cyan-400 transition-colors">
+              Tik-Down
+            </a>
+          </div>
 
-        {/* Horizontal Menu for Larger Screens */}
-        <div className="hidden lg:flex flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li><a className='h6'>TikVideo</a></li>
-            <li><a href="">TikAudio</a></li>
-          </ul>
+          {/* Desktop Navigation Link Menu */}
+          <div className="hidden lg:flex items-center gap-6">
+            <a 
+              href="#" 
+              className="text-sm font-medium text-cyan-400 border-b-2 border-cyan-400 px-1 py-1"
+            >
+              TikVideo
+            </a>
+            {/* <a 
+              href="#" 
+              className="text-sm font-medium text-gray-400 hover:text-white hover:border-b-2 hover:border-purple-500 px-1 py-1 transition-all"
+            >
+              TikAudio
+            </a> */}
+          </div>
+
+          {/* Right Action Button */}
+          <div className="hidden lg:flex flex-1 justify-end">
+            <button className="bg-white text-black hover:bg-cyan-400 hover:text-black rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide transition-all active:scale-95">
+              Premium v1
+            </button>
+          </div>
+          
+          {/* Toggle Button Hamburger for Mobile Screen */}
+          <div className="lg:hidden flex items-center">
+            <button
+              onClick={toggleMenu}
+              className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all outline-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {mobileMenuIsOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                )}
+              </svg>
+            </button>
+          </div>
+
         </div>
       </div>
 
       {/* Mobile Dropdown Menu */}
-      <div className={`lg:hidden ${mobileMenuIsOpen ? 'block' : 'hidden'} bg-neutral`}>
-        <ul className="menu menu-vertical px-4 py-2">
-          <li><a className='h6 text-white'>TikVideo</a></li>
-          <li><a href="" className='text-white'>TikAudio</a></li>
-        </ul>
+      <div className={`lg:hidden transition-all duration-300 ${mobileMenuIsOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'} overflow-hidden bg-[#0c0414]/95 border-b border-gray-950 px-4`}>
+        <div className="flex flex-col gap-2 py-3">
+          <a 
+            href="#" 
+            className="px-4 py-2.5 rounded-xl text-sm font-medium bg-white/5 text-cyan-400"
+          >
+            TikVideo
+          </a>
+          {/* <a 
+            href="#" 
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-all"
+          >
+            TikAudio
+          </a> */}
+        </div>
       </div>
-    </>
+    </nav>
   );
 }
 
